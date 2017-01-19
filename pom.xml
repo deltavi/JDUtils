@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
 
     <name>JDUtils</name>
-    <description></description>
+    <description>Java utility classes</description>
 
     <url>http://maven.apache.org</url>
 
