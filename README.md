@@ -1,1 +1,2 @@
 # JDUtils
+Java utility classes
