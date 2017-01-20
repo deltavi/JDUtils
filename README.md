@@ -4,3 +4,9 @@
 
 # JDUtils
 Java utility classes
+
+## MimeTypesUtils
+
+#### String `getFileContentType`(String fileName)
+
+*Get content type from file extension.*
