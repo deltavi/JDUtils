@@ -15,4 +15,9 @@ public class MimeTypesUtilsTest extends TestCase {
         String contentType = MimeTypesUtils.getFileContentType("testFile.txt");
         assertEquals("Content type mismatch", "text/plain", contentType);
     }
+
+    public void testGetFileContentType_PDF() throws Exception {
+        String contentType = MimeTypesUtils.getFileContentType("TESTFILE.PDF");
+        assertEquals("Content type mismatch", "application/pdf", contentType);
+    }
 }
