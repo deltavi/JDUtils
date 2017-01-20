@@ -14,6 +14,6 @@ public class MimeTypesUtils {
     public static String getFileContentType(final String fileName) {
         return MimetypesFileTypeMap
                 .getDefaultFileTypeMap()
-                .getContentType(fileName);
+                .getContentType(fileName.toLowerCase());
     }
 }
