@@ -7,4 +7,5 @@ public interface RegexConst {
     String EMAIL = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}";
     String START = "^";
     String END = "$";
+    String NEW_LINE = "(\r\n|\n)";
 }
