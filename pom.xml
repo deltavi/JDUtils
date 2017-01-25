@@ -10,7 +10,7 @@
     <name>JDUtils</name>
     <description>Java utility classes</description>
 
-    <url>http://maven.apache.org</url>
+    <url>http://www.vincenzodevivo.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
