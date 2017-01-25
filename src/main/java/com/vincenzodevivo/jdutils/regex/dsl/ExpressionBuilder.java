@@ -28,11 +28,10 @@ public class ExpressionBuilder implements RegexConst {
         return subExpressions;
     }
 
-    public ExpressionBuilder string() {
-        subExpressions.add(new Expression(STRING));
+    public ExpressionBuilder letter() {
+        subExpressions.add(new Expression(LETTER));
         return this;
     }
-
 
     public ExpressionBuilder integer() {
         subExpressions.add(new Expression(INTEGER));
@@ -59,8 +58,33 @@ public class ExpressionBuilder implements RegexConst {
         return this;
     }
 
+    public ExpressionBuilder s() {
+        subExpressions.add(new Expression(OCC_ONE_OR_MORE));
+        return this;
+    }
+
+    public ExpressionBuilder s(int min) {
+        subExpressions.add(new Expression("{" + min + ",}"));
+        return this;
+    }
+
+    public ExpressionBuilder s(int min, int max) {
+        subExpressions.add(new Expression("{" + min + "," + max + "}"));
+        return this;
+    }
+
+    public ExpressionBuilder exactOcc(int num) {
+        subExpressions.add(new Expression("{" + num + "}"));
+        return this;
+    }
+
     public ExpressionBuilder start() {
         subExpressions.add(new Expression(START));
+        return this;
+    }
+
+    public ExpressionBuilder any() {
+        subExpressions.add(new Expression(ANY));
         return this;
     }
 
