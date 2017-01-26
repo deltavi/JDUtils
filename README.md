@@ -13,40 +13,53 @@ Java utility classes
 
 ## EmptyUtils
 
-#### static boolean `isEmpty`(CharSequence cs) 
+```java
+public static boolean isEmpty(final CharSequence cs) 
+```
 *Checks if a CharSequence is empty ("") or null.*
-
-#### static boolean `isEmpty`(Object[] array) 
+```java
+public static boolean isEmpty(final Object[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(long[] array) 
+```java
+public static boolean isEmpty(final long[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(int[] array) 
+```java
+public static boolean isEmpty(final int[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(short[] array) 
+```java
+public static boolean isEmpty(final short[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(char[] array) 
+```java
+public static boolean isEmpty(final char[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(byte[] array) 
+```java
+public static boolean isEmpty(final byte[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(double[] array) 
+```java
+public static boolean isEmpty(final double[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(float[] array) 
+```java
+public static boolean isEmpty(final float[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(boolean[] array) 
+```java
+public static boolean isEmpty(final boolean[] array) 
+```
 *Checks if array is empty or null.*
-
-#### static boolean `isEmpty`(Collection collection)
+```java
+public static boolean isEmpty(final Collection collection) 
+```
 *Checks if a Collection is empty or null.*
-
-#### static boolean `isEmpty`(Map map)
+```java
+public static boolean isEmpty(final Map map)
+```
 *Checks if a Map is empty or null.*
 
 ## StringSplitter
