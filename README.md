@@ -7,8 +7,9 @@ Java utility classes
 
 ## MimeTypesUtils
 
-#### static String `getFileContentType`(String fileName)
-
+```java
+public static String getFileContentType(final String fileName)
+```
 *Get content type from file extension.*
 
 ## EmptyUtils
@@ -63,7 +64,9 @@ public static boolean isEmpty(final Map map)
 *Checks if a Map is empty or null.*
 
 ## StringSplitter
-
-#### static List<String> `splitAndModify`(String str, String delimiter, StringModifier modifier)
-
-#### static List<String> `splitAndModifyRE`(String str, String regEx, StringModifier modifier)
+```java
+public static List<String> splitAndModify(String str, String delimiter, StringModifier modifier)
+```
+```java
+public static List<String> splitAndModifyRE(String str, String regEx, StringModifier modifier)
+```
