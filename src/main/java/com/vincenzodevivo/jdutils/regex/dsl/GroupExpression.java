@@ -1,8 +1,8 @@
 package com.vincenzodevivo.jdutils.regex.dsl;
 
-import com.vincenzodevivo.jdutils.string.StringUtils;
-
 import java.util.List;
+
+import static com.vincenzodevivo.jdutils.EmptyUtils.*;
 
 /**
  * Created by Vincenzo De Vivo on 21/01/2017.
@@ -24,7 +24,7 @@ public class GroupExpression extends Expression {
     public String toString() {
         StringBuilder exp = new StringBuilder();
         exp.append("(");
-        if (!StringUtils.isEmpty(name)) {
+        if (!isEmpty(name)) {
             exp.append("?<");
             exp.append(name);
             exp.append(">");

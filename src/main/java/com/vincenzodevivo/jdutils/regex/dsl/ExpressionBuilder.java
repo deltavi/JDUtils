@@ -1,7 +1,7 @@
 package com.vincenzodevivo.jdutils.regex.dsl;
 
 import com.vincenzodevivo.jdutils.regex.RegexConst;
-import com.vincenzodevivo.jdutils.string.StringUtils;
+import static com.vincenzodevivo.jdutils.EmptyUtils.*;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -116,7 +116,7 @@ public class ExpressionBuilder implements RegexConst {
     }
 
     public GroupExpressionBuilder group(String name) throws GroupNameAlreadyDefinedException {
-        if (!StringUtils.isEmpty(name)) {
+        if (!isEmpty(name)) {
             if (groupNames.contains(name)) {
                 throw new GroupNameAlreadyDefinedException("Named group <" + name + "> is already defined!");
             } else {
@@ -145,7 +145,7 @@ public class ExpressionBuilder implements RegexConst {
         Matcher matcher = toMatcher(input);
         while (matcher.find()) {
             String group = matcher.group();
-            if (!StringUtils.isEmpty(group)) {
+            if (!isEmpty(group)) {
                 list.add(group);
             }
         }
@@ -160,7 +160,7 @@ public class ExpressionBuilder implements RegexConst {
             list.add(groups);
             for (String groupName : groupNames) {
                 String group = matcher.group(groupName);
-                if (!StringUtils.isEmpty(group)) {
+                if (!isEmpty(group)) {
                     groups.put(groupName, group);
                 }
             }
@@ -173,7 +173,7 @@ public class ExpressionBuilder implements RegexConst {
         Matcher matcher = toMatcher(input);
         while (matcher.find()) {
             String group = matcher.group(groupName);
-            if (!StringUtils.isEmpty(group)) {
+            if (!isEmpty(group)) {
                 list.add(group);
             }
         }
@@ -184,7 +184,7 @@ public class ExpressionBuilder implements RegexConst {
         Matcher matcher = toMatcher(input);
         while (matcher.find()) {
             String group = matcher.group();
-            if (!StringUtils.isEmpty(group)) {
+            if (!isEmpty(group)) {
                 return group;
             }
         }
@@ -195,7 +195,7 @@ public class ExpressionBuilder implements RegexConst {
         Matcher matcher = toMatcher(input);
         while (matcher.find()) {
             String group = matcher.group(groupName);
-            if (!StringUtils.isEmpty(group)) {
+            if (!isEmpty(group)) {
                 return group;
             }
         }
