@@ -8,9 +8,9 @@ Java utility classes
 
 Table of contents
 =================
-* [StringSplitter](#stringsplitter)
 * [MimeTypesUtils](#mimetypesutils)
 * [EmptyUtils](#emptyutils)
+* [StringSplitter](#stringsplitter)
 
 ## MimeTypesUtils
 
