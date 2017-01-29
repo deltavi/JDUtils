@@ -1,11 +1,12 @@
 package com.vincenzodevivo.jdutils.regex.dsl;
 
 import com.vincenzodevivo.jdutils.regex.RegexConst;
-import static com.vincenzodevivo.jdutils.EmptyUtils.*;
 
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.vincenzodevivo.jdutils.EmptyUtils.isEmpty;
 
 /**
  * Created by Vincenzo De Vivo on 21/01/2017.
@@ -30,6 +31,11 @@ public class ExpressionBuilder implements RegexConst {
 
     public ExpressionBuilder letter() {
         subExpressions.add(new Expression(LETTER));
+        return this;
+    }
+
+    public ExpressionBuilder email() {
+        subExpressions.add(new Expression(EMAIL));
         return this;
     }
 

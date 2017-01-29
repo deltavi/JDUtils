@@ -8,72 +8,29 @@ Java utility classes
 
 Table of contents
 =================
-* [MimeTypesUtils](#mimetypesutils)
-* [EmptyUtils](#emptyutils)
-* [StringSplitter](#stringsplitter)
+* [RegexUtils](#regexutils)
 
-## MimeTypesUtils
+## RegexUtils
 
+### Extract all email address from text
 ```java
-public static String getFileContentType(final String fileName)
-```
-*Get content type from file extension.*
+String text = "Lorem ipsum dolor sit amet," +
+        " consectetur adipiscing elit," +
+        " sed do eiusmod tempor info@test.com@ incididunt ut labore et dolore magna aliqua." +
+        " Ut enim ad minim veniam," +
+        " quis nostrud exercitation ullamco test@test.org laboris nisi ut aliquip ex ea commodo consequat." +
+        " Duis aute irure dolor in reprehenderit in voluptate velit test56@testtest.it esse cillum dolore eu fugiat nulla pariatur." +
+        " Excepteur sint occaecat cupidatat non proident," +
+        " sunt in culpa qui officia deserunt test_123-12b@test.co.uk mollit anim id est laborum.";
 
-## EmptyUtils
-
-```java
-public static boolean isEmpty(final CharSequence cs) 
+List<String> emails = RegexUtils.create()
+        .email()
+        .findAll(text);
 ```
-*Checks if a CharSequence is empty ("") or null.*
-```java
-public static boolean isEmpty(final Object[] array) 
+**Results:**
 ```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final long[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final int[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final short[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final char[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final byte[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final double[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final float[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final boolean[] array) 
-```
-*Checks if array is empty or null.*
-```java
-public static boolean isEmpty(final Collection collection) 
-```
-*Checks if a Collection is empty or null.*
-```java
-public static boolean isEmpty(final Map map)
-```
-*Checks if a Map is empty or null.*
-
-## StringSplitter
-```java
-public static List<String> splitAndModify(String str, String delimiter, StringModifier modifier)
-```
-```java
-public static List<String> splitAndModifyRE(String str, String regEx, StringModifier modifier)
+info@test.com
+test@test.org
+test56@testtest.it
+test_123-12b@test.co.uk
 ```
