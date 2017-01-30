@@ -39,3 +39,28 @@ test@test.org
 test56@testtest.it
 test_123-12b@test.co.uk
 ```
+
+### Find all fruit in dollars
+
+```java
+String text = "Apples £0.94, Bananas $0.68, Oranges €1.50," +
+              " Pineapple $0.69, Mango $0.75";
+
+Map<String, String> fruitInDollars = RegexUtils.create()
+        .group("key")
+            .letters()
+        .endGroup()
+        .space()
+        .group("value")
+            .constant("$")
+            .number()
+        .endGroup()
+        .findMap(text);
+```
+
+*Results:*
+```
+Bananas -> $0.68
+Mango -> $0.75
+Pineapple -> $0.69
+```

@@ -12,6 +12,9 @@ import static com.vincenzodevivo.jdutils.EmptyUtils.isEmpty;
  * Created by Vincenzo De Vivo on 21/01/2017.
  */
 public class ExpressionBuilder implements RegexConst {
+    public static final String MAP_KEY = "key";
+    public static final String MAP_VALUE = "value";
+
     private List<Expression> subExpressions;
     private Set<String> groupNames;
 
@@ -31,6 +34,11 @@ public class ExpressionBuilder implements RegexConst {
 
     public ExpressionBuilder letter() {
         subExpressions.add(new Expression(LETTER));
+        return this;
+    }
+
+    public ExpressionBuilder letters() {
+        letter().s();
         return this;
     }
 
@@ -178,10 +186,22 @@ public class ExpressionBuilder implements RegexConst {
         Map<String, String> map = new HashMap<>();
         Matcher matcher = toMatcher(input);
         while (matcher.find()) {
-                String key = matcher.group(keyName);
-                if (!isEmpty(key)) {
-                    map.put(key, matcher.group(valueName));
-                }
+            String key = matcher.group(keyName);
+            if (!isEmpty(key)) {
+                map.put(key, matcher.group(valueName));
+            }
+        }
+        return map;
+    }
+
+    public Map<String, String> findMap(String input) {
+        Map<String, String> map = new HashMap<>();
+        Matcher matcher = toMatcher(input);
+        while (matcher.find()) {
+            String key = matcher.group(MAP_KEY);
+            if (!isEmpty(key)) {
+                map.put(key, matcher.group(MAP_VALUE));
+            }
         }
         return map;
     }
