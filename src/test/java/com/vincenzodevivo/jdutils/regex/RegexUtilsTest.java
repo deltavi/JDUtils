@@ -147,4 +147,24 @@ public class RegexUtilsTest {
         assertEquals("ccc", results.get(1));
         assertEquals("dddd", results.get(2));
     }
+
+    @Test
+    public void testFindMap() throws Exception {
+        ExpressionBuilder builder = RegexUtils
+                .create()
+                .group("name")
+                    .letter().s()
+                .endGroup()
+                .constant("=")
+                .group("email")
+                    .email()
+                .endGroup();
+        Map<String,String> map = builder.findMap("pippo=pippo@test.com, pluto=pluto@test.com", "name","email");
+        logger.debug(builder.toString());
+        logger.debug(map.toString());
+
+        assertEquals(2, map.size());
+        assertEquals("pluto@test.com", map.get("pluto"));
+        assertEquals("pippo@test.com", map.get("pippo"));
+    }
 }

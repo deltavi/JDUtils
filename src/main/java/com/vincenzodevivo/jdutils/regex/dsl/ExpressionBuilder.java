@@ -174,6 +174,18 @@ public class ExpressionBuilder implements RegexConst {
         return list;
     }
 
+    public Map<String, String> findMap(String input, String keyName, String valueName) {
+        Map<String, String> map = new HashMap<>();
+        Matcher matcher = toMatcher(input);
+        while (matcher.find()) {
+                String key = matcher.group(keyName);
+                if (!isEmpty(key)) {
+                    map.put(key, matcher.group(valueName));
+                }
+        }
+        return map;
+    }
+
     public List<String> findAll(String input, String groupName) {
         List<String> list = new ArrayList<>();
         Matcher matcher = toMatcher(input);
