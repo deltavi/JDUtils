@@ -1,6 +1,7 @@
 package com.vincenzodevivo.jdutils.regex.dsl;
 
 import com.vincenzodevivo.jdutils.regex.RegexConst;
+import com.vincenzodevivo.jdutils.string.StringSplitter;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -117,6 +118,16 @@ public class ExpressionBuilder implements RegexConst {
         return this;
     }
 
+    public ExpressionBuilder range(String range) {
+        subExpressions.add(new Expression("[" + range + "]"));
+        return this;
+    }
+
+    public ExpressionBuilder range(String from, String to) {
+        subExpressions.add(new Expression("[" + from + "-" + to + "]"));
+        return this;
+    }
+
     public ExpressionBuilder constant(String value) {
         subExpressions.add(new Expression(Pattern.quote(value)));
         return this;
@@ -195,15 +206,7 @@ public class ExpressionBuilder implements RegexConst {
     }
 
     public Map<String, String> findMap(String input) {
-        Map<String, String> map = new HashMap<>();
-        Matcher matcher = toMatcher(input);
-        while (matcher.find()) {
-            String key = matcher.group(MAP_KEY);
-            if (!isEmpty(key)) {
-                map.put(key, matcher.group(MAP_VALUE));
-            }
-        }
-        return map;
+        return findMap(input, MAP_KEY, MAP_VALUE);
     }
 
     public List<String> findAll(String input, String groupName) {
@@ -216,6 +219,17 @@ public class ExpressionBuilder implements RegexConst {
             }
         }
         return list;
+    }
+
+    public String[] split(String input) {
+        if (!isEmpty(input)) {
+            return input.split(this.toString());
+        }
+        return new String[0];
+    }
+
+    public List<String> splitAdTrim(String input) {
+        return StringSplitter.splitAndTrimRE(input, this.toString());
     }
 
     public String findFirst(String input) {

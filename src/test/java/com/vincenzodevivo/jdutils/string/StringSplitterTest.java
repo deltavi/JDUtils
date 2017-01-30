@@ -26,6 +26,37 @@ public class StringSplitterTest {
     }
 
     @Test
+    public void testSplitAndModifyElements$() throws Exception {
+        List<String> elements = StringSplitter.splitAndModify("1|23|4", "|", str -> "$" + str);
+        logger.debug(elements.toString());
+
+        assertEquals("Element size != 3", 3, elements.size());
+        assertEquals("$1", elements.get(0));
+        assertEquals("$23", elements.get(1));
+        assertEquals("$4", elements.get(2));
+    }
+
+    @Test
+    public void testSplitAndTrimElements() throws Exception {
+        List<String> elements = StringSplitter.splitAndTrim(" a |b|\t c|", "|");
+        logger.debug(elements.toString());
+        assertEquals("Element size != 3", 3, elements.size());
+        assertEquals("a", elements.get(0));
+        assertEquals("b", elements.get(1));
+        assertEquals("c", elements.get(2));
+    }
+
+    @Test
+    public void testSplitAndTrimElementsRE() throws Exception {
+        List<String> elements = StringSplitter.splitAndTrimRE(" a |b|\t c|", "\\|");
+        logger.debug(elements.toString());
+        assertEquals("Element size != 3", 3, elements.size());
+        assertEquals("a", elements.get(0));
+        assertEquals("b", elements.get(1));
+        assertEquals("c", elements.get(2));
+    }
+
+    @Test
     public void testSplitAndModifyElements2() throws Exception {
         List<String> elements = StringSplitter.splitAndModify(" a |b|\t c", "|b|\t", new TrimModifier());
         logger.debug(elements.toString());

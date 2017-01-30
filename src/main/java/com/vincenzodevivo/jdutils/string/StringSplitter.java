@@ -1,6 +1,7 @@
 package com.vincenzodevivo.jdutils.string;
 
 import com.vincenzodevivo.jdutils.string.modifier.StringModifier;
+import com.vincenzodevivo.jdutils.string.modifier.TrimModifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +27,13 @@ public class StringSplitter {
             }
         }
         return elements;
+    }
+
+    public static List<String> splitAndTrim(String str, String delimiter) {
+        return splitAndTrimRE(str, Pattern.quote(delimiter));
+    }
+
+    public static List<String> splitAndTrimRE(String str, String regEx) {
+        return splitAndModifyRE(str, regEx, new TrimModifier());
     }
 }
