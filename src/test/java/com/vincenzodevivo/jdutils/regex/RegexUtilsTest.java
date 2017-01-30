@@ -167,4 +167,24 @@ public class RegexUtilsTest {
         assertEquals("pluto@test.com", map.get("pluto"));
         assertEquals("pippo@test.com", map.get("pippo"));
     }
+
+    @Test
+    public void testFindMapDefaultKey() throws Exception {
+        ExpressionBuilder builder = RegexUtils
+                .create()
+                .group("key")
+                    .letter().s()
+                .endGroup()
+                .constant("=")
+                .group("value")
+                    .email()
+                .endGroup();
+        Map<String,String> map = builder.findMap("pippo=pippo@test.com, pluto=pluto@test.com");
+        logger.debug(builder.toString());
+        logger.debug(map.toString());
+
+        assertEquals(2, map.size());
+        assertEquals("pluto@test.com", map.get("pluto"));
+        assertEquals("pippo@test.com", map.get("pippo"));
+    }
 }
