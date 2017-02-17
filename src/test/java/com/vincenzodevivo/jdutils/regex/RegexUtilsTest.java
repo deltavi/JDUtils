@@ -40,6 +40,19 @@ public class RegexUtilsTest {
     }
 
     @Test
+    public void testRange() throws Exception {
+        List<String> results = RegexUtils
+                .create()
+                .range("acd")
+                .range("0", "5").s()
+                .findAll("aaa bbbb c115454 e100 100 a1 0 test d9");
+        logger.debug(results.toString());
+        assertEquals(2, results.size());
+        assertEquals("c115454", results.get(0));
+        assertEquals("a1", results.get(1));
+    }
+
+    @Test
     public void testFindFirstExactOcc() throws Exception {
         String result = RegexUtils
                 .create()
@@ -102,7 +115,7 @@ public class RegexUtilsTest {
     }
 
     @Test
-    public void testFindAllByGroupName() throws Exception {
+    public void testFindAllNamedGroup() throws Exception {
         List<Map<String, String>> results = RegexUtils
                 .create()
                 .group("group1")
@@ -134,6 +147,28 @@ public class RegexUtilsTest {
     }
 
     @Test
+    public void testFindAllByGroupName() throws Exception {
+        List<String> results = RegexUtils
+                .create()
+                .group("group1")
+                .letters()
+                .endGroup()
+                .space()
+                .group("group2")
+                .integer()
+                .endGroup()
+                .findAll("aaa bbbb -115454 aaa +100 100 1 b 0 test", "group1");
+        logger.debug(results.toString());
+
+        assertEquals(3, results.size());
+        assertEquals("bbbb", results.get(0));
+        assertEquals("aaa", results.get(1));
+        assertEquals("b", results.get(2));
+
+
+    }
+
+    @Test
     public void testFindAll() throws Exception {
         ExpressionBuilder builder = RegexUtils
                 .create()
@@ -153,18 +188,70 @@ public class RegexUtilsTest {
         ExpressionBuilder builder = RegexUtils
                 .create()
                 .group("name")
-                    .letter().s()
+                .letter().s()
                 .endGroup()
                 .constant("=")
                 .group("email")
-                    .email()
+                .email()
                 .endGroup();
-        Map<String,String> map = builder.findMap("pippo=pippo@test.com, pluto=pluto@test.com", "name","email");
+        Map<String, String> map = builder.findMap("pippo=pippo@test.com, pluto=pluto@test.com", "name", "email");
         logger.debug(builder.toString());
         logger.debug(map.toString());
 
         assertEquals(2, map.size());
         assertEquals("pluto@test.com", map.get("pluto"));
         assertEquals("pippo@test.com", map.get("pippo"));
+    }
+
+    @Test
+    public void testFindMapDefaultKey() throws Exception {
+        ExpressionBuilder builder = RegexUtils
+                .create()
+                .group("key")
+                .letter().s()
+                .endGroup()
+                .constant("=")
+                .group("value")
+                .email()
+                .endGroup();
+        Map<String, String> map = builder.findMap("pippo=pippo@test.com, pluto=pluto@test.com");
+        logger.debug(builder.toString());
+        logger.debug(map.toString());
+
+        assertEquals(2, map.size());
+        assertEquals("pluto@test.com", map.get("pluto"));
+        assertEquals("pippo@test.com", map.get("pippo"));
+    }
+
+    @Test
+    public void testSplit() throws Exception {
+        ExpressionBuilder builder = RegexUtils
+                .create()
+                .constant("|->");
+        String[] strings = builder.split("aaa|->bbb|->cccc|->d");
+        logger.debug(builder.toString());
+        //logger.debug(String.join(strings));
+
+        assertEquals(4, strings.length);
+        assertEquals("aaa", strings[0]);
+        assertEquals("bbb", strings[1]);
+        assertEquals("cccc", strings[2]);
+        assertEquals("d", strings[3]);
+    }
+
+    @Test
+    public void testSplitAndTrim() throws Exception {
+        ExpressionBuilder builder = RegexUtils
+                .create()
+                .constant("|->");
+        List<String> strings = builder.splitAdTrim("aaa |-> bbb |-> cccc |->\td");
+        logger.debug(builder.toString());
+
+        assertEquals(4, strings.size());
+        assertEquals("aaa", strings.get(0));
+        assertEquals("bbb", strings.get(1));
+        assertEquals("cccc", strings.get(2));
+        assertEquals("d", strings.get(3));
+
     }
 }
